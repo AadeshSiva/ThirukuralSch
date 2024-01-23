@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="asserts/green.svg" type="image/x-icon">
+    <title>AS Schedular</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside id="aside">
+        <h1>Hello! 👋</h1>
+        <p>Welcome to <strong>scheduler</strong> 📅</p>
+        <input placeholder="Username" type="text" name="username" id="username" onkeyup="handleKeyUp(event)"
+            autocomplete="off">
+        <p class="copy">&copy; Aadesh Siva</p>
+    </aside>
+    <article id="article">
+        <span id="newtaskcon">
+            <p>New task 🔥</p>
+            <span class="taskinputcon">
+                <input type="text" name="taskin" id="taskin" placeholder="Write in short" autocomplete="off">
+                <p onclick="addtask()">+ Add</p>
+            </span>
+        </span>
+
+        <p id="kuralinfo">Lorem ipsum dolor sit amet.</p>
+    </article>
+    <nav>
+        <img src="asserts/logo.svg" alt="" class="logo">
+        <p onclick="addtaskopn()" class="addtask" id="addtaskbtn">
+            <green>+</green>Add task
+        </p>
+    </nav>
+    <main>
+        <header id="date">
+            <h1 class="month" id="dateday">23 Wed</h1>
+            <p id="month"></p>
+            <p id="thirukural"><img onclick="info()" src="asserts/info.svg" alt=""></p>
+        </header>
+        <ul id="taskcon">
+            <!-- <li onclick="done(this)" class="tasks">Lorem ipsum dolor sit amet.</li>
+            <li onclick="done(this)" class="tasks">Lorem ipsum dolor sit amet.</li>
+            <li onclick="done(this)" class="tasks">Lorem ipsum dolor sit amet.</li> -->
+            <img onclick="addtaskopn()" src="asserts/addhere.svg" alt="" id="addhere">
+        </ul>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
