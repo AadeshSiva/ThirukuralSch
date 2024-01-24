@@ -53,7 +53,7 @@ window.onload = function () {
     const taskcon = document.getElementById('taskcon');
 
     storedTasks.forEach(task => {
-        taskcon.innerHTML += `<li onclick="done(this)" class="tasks" style="text-decoration: ${task.done ? 'line-through' : 'none'}; text-decoration-color: ${task.done ? '#db0d0d' : 'initial'}">${task.text}</li>`;
+        taskcon.innerHTML += `<li onclick="done(this)"  ondblclick="del(this)" class="tasks" style="text-decoration: ${task.done ? 'line-through' : 'none'}; text-decoration-color: ${task.done ? '#db0d0d' : 'initial'};color:${task.done ? 'grey' : 'white'}">${task.text}</li>`;
     });
 };
 
@@ -64,7 +64,7 @@ function addtask() {
     if (taskin !== '') {
         storedTasks.push({ text: taskin, done: false });
         localStorage.setItem('tasks', JSON.stringify(storedTasks));
-        taskcon.innerHTML += `<li onclick="done(this)" class="tasks">${taskin}</li>`;
+        taskcon.innerHTML += `<li onclick="done(this)"  ondblclick="del(this)"class="tasks">${taskin}</li>`;
         document.getElementById('taskin').value = '';
         addtaskbtn.innerHTML = `<p><green>+ </green> Add task</p>`;
         article.style.display = 'none';
@@ -81,8 +81,10 @@ function done(element) {
         if (storedTasks[taskIndex].done) {
             element.style.textDecoration = 'line-through';
             element.style.textDecorationColor = '#db0d0d';
+            element.style.color = 'grey';
         } else {
             element.style.textDecoration = 'none';
+            element.style.color = 'white';
         }
     }
 }
@@ -210,3 +212,26 @@ function info(index) {
         kuralinfo.style.display = 'none';
     }
 }
+function del(element) {
+    const taskText = element.innerText.trim();
+    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const taskIndex = storedTasks.findIndex(task => task.text === taskText);
+
+    if (taskIndex !== -1) {
+        const confirmDelete = window.confirm('Are you sure you want to delete this task?');
+
+        if (confirmDelete) {
+            storedTasks.splice(taskIndex, 1); 
+            localStorage.setItem('tasks', JSON.stringify(storedTasks)); 
+            element.remove();
+
+            const addhere = document.getElementById('addhere');
+            if (storedTasks.length === 0) {
+                addhere.style.display = 'block';
+            } else {
+                addhere.style.display = 'none';
+            }
+        }
+    }
+}
+
