@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="asserts/green.svg" type="image/x-icon">
+    <title>AS CheckList</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function saveToLocalStorage() {
+            const top1 = document.getElementById('top1').value;
+            const top2 = document.getElementById('top2').value;
+            const top3 = document.getElementById('top3').value;
+
+            const lineup = [];
+            for (let i = 1; i <= 12; i++) {
+                lineup.push(document.getElementById(`lineup${i}`).value);
+            }
+
+            localStorage.setItem('top1', top1);
+            localStorage.setItem('top2', top2);
+            localStorage.setItem('top3', top3);
+            localStorage.setItem('lineup', JSON.stringify(lineup));
+        }
+
+        function loadFromLocalStorage() {
+            console.log("Loading data from local storage...");
+
+            const top1 = localStorage.getItem('top1');
+            const top2 = localStorage.getItem('top2');
+            const top3 = localStorage.getItem('top3');
+            const lineup = localStorage.getItem('lineup');
+
+            console.log("Top1:", top1);
+            console.log("Top2:", top2);
+            console.log("Top3:", top3);
+            console.log("Lineup:", lineup);
+
+            if (top1 !== null) {
+                document.getElementById('top1').value = top1;
+            }
+            if (top2 !== null) {
+                document.getElementById('top2').value = top2;
+            }
+            if (top3 !== null) {
+                document.getElementById('top3').value = top3;
+            }
+
+            if (lineup) {
+                const lineupArray = JSON.parse(lineup);
+                lineupArray.forEach((value, index) => {
+                    const element = document.getElementById(`lineup${index + 1}`);
+                    if (element) {
+                        element.value = value;
+                    }
+                });
+            }
+        }
+
+        // Load from local storage on page load
+        window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+
+
+    </script>
+</head>
+
+<body>
+    <nav>
+        <a href=""><img src="asserts/logo.svg" alt="" class="logo"></a>
+        <span class="left">
+            <img onclick="openaddtask()" class="checklist" src="asserts/addtask.svg" alt="">
+            <p id="date"></p>
+        </span>
+    </nav>
+    <main class="checkmain">
+        <div class="top">
+            <p class="topics">Top Priority</p>
+            <input class="inputfeild" type="text" id="top1" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="top2" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="top3" onchange="saveToLocalStorage()">
+        </div>
+        <div class="lineup">
+            <p class="topics topics2">Line ups</p>
+            <input class="inputfeild" type="text" id="lineup1" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup2" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup3" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup4" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup5" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup6" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup7" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup8" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup9" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup10" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup11" onchange="saveToLocalStorage()">
+            <input class="inputfeild" type="text" id="lineup12" onchange="saveToLocalStorage()">
+
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
