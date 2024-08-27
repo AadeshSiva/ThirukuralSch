@@ -15,7 +15,9 @@ function storeUsername() {
 }
 
 if (localStorage.getItem("username")) {
-    document.getElementById("aside").style.display = "none";
+    const userelement = document.getElementById("aside");
+    userelement.style.display = 'none';
+
 }
 // ------------------------------------------------------------------------ ADD TASK
 function addtaskopn() {
@@ -234,4 +236,57 @@ function del(element) {
         }
     }
 }
+function openchecklist() {
+    window.location.href = 'check.html'
+}
 
+function openaddtask() {
+    window.location.href = 'index.html'
+}
+
+function setgoalopn() {
+    const article2 = document.getElementById('article2');
+    const newgoalcon = document.getElementById('newgoalcon');
+    const setgoalbtn = document.getElementById('setgoalbtn');
+    if (article2.style.display === 'none' || article2.style.display === '') {
+        article2.style.display = 'grid';
+        newgoalcon.style.display = 'flex';
+        setgoalbtn.innerHTML = `<span><red>-</red> Close</span>`;
+    } else {
+        article2.style.display = 'none';
+        newgoalcon.style.display = 'none';
+        setgoalbtn.innerHTML = `<span><yellow>+</yellow> Set goal</span>`;
+    }
+}
+
+function mile(e) {
+    const article2 = document.getElementById('article2');
+    const goalin = document.getElementById('goalin');
+    const newgoalcon = document.getElementById('newgoalcon');
+    const value = parseFloat(goalin.value) / e;
+    const setgoalbtn = document.getElementById('setgoalbtn');
+    const checkconinner = document.getElementById('checkconinner');
+
+    checkconinner.innerHTML = '';
+
+    if (article2.style.display === 'none' || article2.style.display === '') {
+        article2.style.display = 'grid';
+        newgoalcon.style.display = 'flex';
+        setgoalbtn.innerHTML = `<span style="color: red;">-</span> Close`;
+
+        if (value > 0) {
+            let checkboxesHTML = '';
+            for (let i = 0; i < Math.floor(value); i++) {
+                checkboxesHTML += `<input class="customCheckbox" type="checkbox">`;
+            }
+            checkconinner.innerHTML = checkboxesHTML;
+        } else {
+            console.warn('Calculated value is not positive. No checkboxes will be created.');
+        }
+    } else {
+        article2.style.display = 'none';
+        newgoalcon.style.display = 'none';
+        setgoalbtn.innerHTML = `<span style="color: yellow;">+</span> Set goal`;
+    }
+}
+// =================
