@@ -18,7 +18,7 @@
         <p class="copy">&copy; Aadesh Siva</p>
     </aside>
     <article id="article">
-        <span id="newtaskcon">
+        <span class="newtaskcon" id="newtaskcon">
             <p>New task 🔥</p>
             <span class="taskinputcon">
                 <input type="text" name="taskin" id="taskin" placeholder="Write in short" autocomplete="off">
@@ -30,9 +30,13 @@
     </article>
     <nav>
         <a href=""><img src="asserts/logo.svg" alt="" class="logo"></a>
-        <p onclick="addtaskopn()" class="addtask" id="addtaskbtn">
-            <green>+</green>Add task
-        </p>
+        <span class="left">
+            <img onclick="openchecklist()" class="checklist" src="asserts/checklist.svg" alt="">
+            <p onclick="addtaskopn()" class="addtask" id="addtaskbtn">
+                <green>+</green>Add task
+            </p>
+        </span>
+
     </nav>
     <main>
         <header id="date">
