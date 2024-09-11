@@ -16,4 +16,5 @@ Thirukural Scheduler is a web-based task manager built using HTML, CSS, and Java
 - **CSS**: Adds style and design to the interface.
 - **JavaScript**: Powers dynamic features like task management and Thirukural updates.
   
-🔗 https://aadeshsiva.github.io/ThirukuralSch/
+##Access link
+https://aadeshsiva.github.io/ThirukuralSch/
